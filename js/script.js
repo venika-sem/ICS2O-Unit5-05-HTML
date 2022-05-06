@@ -1,5 +1,5 @@
 /* Created by: Venika Sem
- * Created on: Apr 2022
+ * Created on: May 2022
  * This file contains the JS functions for index.html 
 */
 
@@ -9,21 +9,30 @@
  * Check servie worker.
  */
 if (navigator.serviceWorker) {
-  navigator.serviceWorker.register("/ICS2O-Unit6-01-PWA/sw.js", {
-    scope: "/ICS2O-Unit6-01-PWA/",
+  navigator.serviceWorker.register("/ICS2O-Unit5-05-HTML/sw.js", {
+    scope: "/ICS2O-Unit5-05-HTML/",
   })
 }
 
 /**
- * This function converts the temperature from fahrenheit to celsius.
+ * This function determines the type of triangle
  */
-function convert() {
+function check() {
   // input
-  const fahrenheitTemperature = parseFloat(document.getElementById('fahrenheit-temperature').value)
+  var firstLength = document.getElementById("first-dimension").value
+  var secondLength = document.getElementById("second-dimension").value
+  var thirdLength = document.getElementById("third-dimension").value
 
-   // process
-  const temperature = (fahrenheitTemperature - 32) * 5 / 9
-
-  // output
-  document.getElementById('temperature').innerHTML = '<p>The temperature in Celsius is: ' + temperature.toFixed(2) + ' °C</p>'
+  // process and output
+  if ((firstLength <= 0) || (secondLength <= 0) || (thirdLength <= 0)) {
+    document.getElementById("answer").innerHTML = 'Please input a positive number.'
+  } else {
+    if ((firstLength == secondLength) && (secondLength == thirdLength)) {
+      document.getElementById("answer").innerHTML = 'It is an Equilateral Triangle!'
+    } else if ((firstLength == secondLength) || (firstLength == thirdLength) || (secondLength == thirdLength)) {
+      document.getElementById("answer").innerHTML = 'It is an Isosceles Triangle!'
+    } else {
+      document.getElementById("answer").innerHTML = 'It is a Scalene Triangle!'
+    }    
+  }
 }
